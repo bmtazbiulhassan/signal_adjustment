@@ -34,7 +34,16 @@ where:
 ---
 
 ### **3️⃣ Causal Inference: Estimating Conditional Average Treatment Effect (CATE)**
-To determine how traffic signal timing adjustments impact RLR likelihood, I used **Causal Forests** to estimate **Conditional Average Treatment Effects (CATE)** as $$/ τ(X) = E[Y(1) - Y(0) | X] /$$, where $$/ Y(1) /$$ is the log-odds of RLR occurrence with TST adjustment, $$/ Y(0) /$$ is the log-odds of RLR occurrence without TST adjustment, and $$/ X /$$ represents covariates capturing SPaT and traffic conditions.
+To determine how traffic signal timing adjustments impact RLR likelihood, I used **Causal Forests** to estimate **Conditional Average Treatment Effects (CATE)** as:
+
+$$\ 
+τ(X) = E[Y(1) - Y(0) | X] 
+\$$
+
+where: 
+- $$\ Y(1) \$$ is the log-odds of RLR occurrence with TST adjustment,
+- $$\ Y(0) \$$ is the log-odds of RLR occurrence without TST adjustment, and
+- $$\ X \$$ represents covariates capturing SPaT and traffic conditions.
 
 ---
 
@@ -42,12 +51,20 @@ To determine how traffic signal timing adjustments impact RLR likelihood, I used
 - **Treatment Variables (T)** represent adjustments to **yellow, and red-clearance intervals**.
 - **Outcome (Y)** is the log-odds of **unintentional RLR occurrence**.
 
-To isolate the causal impact of TST adjustments, I applied **residualization (orthogonalization)**, modeled as $$/ Y - f̂(W, X) = τ(X) * (T - ĝ(W, X)) + ϵ /$$, where $$/ f̂(W, X) /$$ accounts for confounders, $$/ ĝ(W, X) /$$ models TST assignment, and $$/ τ(X) /$$ estimates the true **causal effect** of **TST adjustments**.
+To isolate the causal impact of TST adjustments, I applied **residualization (orthogonalization)**, modeled as: 
+
+$$\ 
+Y - f̂(W, X) = τ(X) * (T - ĝ(W, X)) + ϵ 
+\$$ 
+
+where: 
+- $$/ f̂(W, X) /$$ accounts for confounders, $$\ ĝ(W, X) \$$ models TST assignment, and
+- $$\ τ(X) \$$ estimates the true **causal effect** of **TST adjustments**.
 
 ---
 
 ### **5️⃣ Translating CATE to Probability Changes**
-To convert log-odds impact into probability shifts, we used the sigmoid function, where $$/ P_CATE = exp(τ(X)) / (1 + exp(τ(X))) /$$ and $$/ ΔP = P_CATE - 0.5 /$$. Here, $$/ P_CATE /$$ represents the probability shift from the baseline, and ΔP quantifies how much RLR probability changes per unit TST adjustment.
+To convert log-odds impact into probability shifts, we used the sigmoid function, where $$\ P_{CATE} = exp(τ(X)) / (1 + exp(τ(X))) \$$ and $$\ ΔP = P_{CATE} - 0.5 \$$. Here, $$\ P_{CATE} \$$ represents the probability shift from the baseline, and ΔP quantifies how much RLR probability changes per unit TST adjustment.
 
 ---
 
@@ -56,10 +73,10 @@ To convert log-odds impact into probability shifts, we used the sigmoid function
 
 **Adjustment Process:**
 1️⃣ Compute **initial probability of RLR** using **AdaBoost**.  
-2️⃣ If $$/ P > 0.5 /$$, compute **$$/ ΔP /$$ using Causal Forest CATE estimates**.  
+2️⃣ If $$\ P > 0.5 \$$, compute **$$\ ΔP \$$ using Causal Forest CATE estimates**.  
 3️⃣ Modify **TST parameters (e.g., increase yellow duration)**.  
 4️⃣ **Re-evaluate probability** after modification.  
-5️⃣ **Repeat until $$/ P ≤ 0.5 /$$**.  
+5️⃣ **Repeat until $$\ P ≤ 0.5 \$$**.  
 
 🚦 **Example Adjustment Scenario:**  
 - **Original TST Settings:** Green = 30s, Yellow = 4s, Red-Clearance = 2s → P(RLR) = 0.62  
