@@ -58,7 +58,8 @@ Y - f̂(W, X) = τ(X) * (T - ĝ(W, X)) + ϵ
 \$$ 
 
 where: 
-- $$/ f̂(W, X) /$$ accounts for confounders, $$\ ĝ(W, X) \$$ models TST assignment, and
+- $$\ f̂(W, X) \$$ accounts for confounders,
+- $$\ ĝ(W, X) \$$ models TST assignment, and
 - $$\ τ(X) \$$ estimates the true **causal effect** of **TST adjustments**.
 
 ---
