@@ -21,11 +21,15 @@ This project is **entirely data-driven** and provides an alternative to traditio
 - Identified **Red Light Running (RLR) violations** using count detectors.
 
 ### **2️⃣ Predicting Red Light Running (RLR) Incidents**
-To estimate the probability of **unintentional** RLR (violations during the red-clearance interval), I applied multiple **Machine Learning (ML) models**, including Logistic Regression, Random Forest (RF), Adaptive Boosting (AdaBoost), and eXtreme Gradient Boosting (XGBoost). AdaBoost achieved the highest sensitivity and lowest false alarm rate, making it the optimal choice for predicting RLR likelihood. The predicted probability is expressed as 
+To estimate the probability of **unintentional** RLR (violations during the red-clearance interval), I applied multiple **Machine Learning (ML) models**, including Logistic Regression, Random Forest (RF), Adaptive Boosting (AdaBoost), and eXtreme Gradient Boosting (XGBoost). AdaBoost achieved the highest sensitivity and lowest false alarm rate, making it the optimal choice for predicting RLR likelihood. The predicted probability is expressed as:
+
 $$\ 
 P(RLR_{unintentional} | X) = f(X; θ) 
 \$$
-where $$\ X \$$ represents historical SPaT and traffic features from previous cycles, and $$\ f(⋅) \$$ is the AdaBoost classifier.
+
+where: 
+- $$\ X \$$ represents historical SPaT and traffic features from previous cycles, and
+- $$\ f(⋅) \$$ is the AdaBoost classifier.
 
 ---
 
