@@ -81,8 +81,8 @@ To convert log-odds impact into probability shifts, we used the sigmoid function
 
 🚦 **Example Adjustment Scenario:**  
 - **Original TST Settings:** Green = 30s, Yellow = 4s, Red-Clearance = 2s → P(RLR) = 0.62  
-- **CATE Estimate:** Increasing yellow by 1s reduces P(RLR) by 0.15.  
-- **Updated TST Settings:** Green = 30s, Yellow = 5s, Red-Clearance = 2s → P(RLR) = 0.47 ✅  
+- **CATE Estimate:** Increasing yellow by 1s reduces P(RLR) by 0.07.  
+- **Updated TST Settings:** Green = 30s, Yellow = 6s, Red-Clearance = 2s → P(RLR) = 0.48 ✅  
 
 ---
 
