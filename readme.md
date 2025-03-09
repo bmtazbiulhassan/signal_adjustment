@@ -89,7 +89,7 @@ To convert log-odds impact into probability shifts, we used the sigmoid function
 ## **📈 Results & Key Findings**
 - **AdaBoost achieved the best RLR prediction accuracy** (highest sensitivity, lowest false alarm rate).  
 - **Causal Forests captured heterogeneous treatment effects**, showing that **TST impact varies by intersection and time of day**.  
-- **Optimal TST adjustments reduced RLR probability by 22-35%**.  
+- **Optimal TST adjustments reduced hourly RLR probability by 7%**.  
 - **Dynamic adjustments were more effective than static traffic signal plans**.  
 
 ---
